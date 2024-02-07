@@ -25,5 +25,5 @@ jobs:
           context: ./VehicleService/
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/vehicleservice:latest
-            ${{ secrets.DOCKER_USERNAME }}/vehicleservice:${{ github.sha }}
+            mwolfhoffman/vehicleservice:latest
+            mwolfhoffman/vehicleservice:${{ github.sha }}
