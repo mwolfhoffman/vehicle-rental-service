@@ -3,7 +3,21 @@ const bodyParser = require("body-parser");
 const vehicleService = require("./services/vehicleService");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const cors = require("cors");
 const app = express();
+
+// Cors
+const whitelist = ["https://wolf-vehicle-rental-service.azurewebsites.net"];
+var corsOptionsDelegate = function (req, callback) {
+  var corsOptions;
+  if (whitelist.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false }; // disable CORS for this request
+  }
+  callback(null, corsOptions); // callback expects two parameters: error and options
+};
+app.use(cors(corsOptionsDelegate));
 
 app.use(bodyParser.json());
 
@@ -11,7 +25,7 @@ app.use(bodyParser.json());
 vehicleService.seed();
 
 // configure swagger
-require('./swagger')(app);
+require("./swagger")(app);
 
 // healthcheck endpoint
 /**
