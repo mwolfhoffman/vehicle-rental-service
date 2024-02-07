@@ -3,10 +3,7 @@ const bodyParser = require("body-parser");
 const vehicleService = require("./services/vehicleService");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-const cors = require("cors");
 const app = express();
-
-app.use(cors());
 
 app.use(bodyParser.json());
 
