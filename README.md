@@ -1,4 +1,4 @@
-# Node.js Verhicle Rental Microservice
+# Node.js Vehicle Rental Microservice
 
 An example microservice for vehicle rental company that uses node.js and mongodb.
 
