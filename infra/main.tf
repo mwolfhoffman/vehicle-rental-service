@@ -1,9 +1,10 @@
 provider "azurerm" {
   features {}
-  subscription_id = "<YOUR SUBSCRIPTION ID>"
-  client_id       = "<YOUR CLIENT ID>"
-  client_secret   = "<YOUR CLIENT SECRET>"
-  tenant_id       = "<YOUR TENANT ID>"
+}
+
+variable "docker_image" {
+  type        = string
+  description = "docker image to deploy to app service"
 }
 
 

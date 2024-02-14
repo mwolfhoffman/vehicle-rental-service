@@ -15,8 +15,9 @@ An example microservice for vehicle rental company that uses node.js and mongodb
 
 ## To Deploy:
 
-1. Enter Azure credentials into `main.tf` `provider`
-1. Enter docker image into `main.tf` `site_config`
-1. terraform init
-1. terraform plan
-1. terraform apply
+1. `cd infra`
+1. `az login`
+1. Enter value for `docker_image` in `terraform.tfvars` (or use default, `mwolfhoffman/vehicleservice`)
+1. `terraform init`
+1. `terraform plan`
+1. `terraform apply`
