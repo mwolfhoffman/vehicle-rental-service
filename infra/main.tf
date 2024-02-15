@@ -7,7 +7,6 @@ variable "docker_image" {
   description = "docker image to deploy to app service"
 }
 
-
 resource "azurerm_resource_group" "vehicleservice_resource_group" {
   name     = "vehicleservice_resource_group"
   location = "West US"
@@ -18,6 +17,7 @@ resource "azurerm_app_service_plan" "vehicleservice_app_service_plan" {
   location            = azurerm_resource_group.vehicleservice_resource_group.location
   resource_group_name = azurerm_resource_group.vehicleservice_resource_group.name
   kind                = "Linux"
+  reserved            = true
 
   sku {
     tier = "Free"
@@ -25,19 +25,22 @@ resource "azurerm_app_service_plan" "vehicleservice_app_service_plan" {
   }
 }
 
+resource "random_uuid" "service_id" {
+}
+
 resource "azurerm_app_service" "vehicleservice_app_service" {
-  name                = "vehicleservice"
+  name                = "vehicleservice-${random_uuid.service_id.result}"
   location            = azurerm_resource_group.vehicleservice_resource_group.location
   resource_group_name = azurerm_resource_group.vehicleservice_resource_group.name
-  app_service_plan_id = azurerm_resource_group.vehicleservice_resource_group.id
+  app_service_plan_id = azurerm_app_service_plan.vehicleservice_app_service_plan.id
 
   site_config {
-    linux_fx_version = "DOCKER>|" + docker_image
+    app_command_line = "docker build -t ${var.docker_image}:latest ../VehicleService"
   }
 }
 
 resource "azurerm_cosmosdb_account" "vehicleservice_db" {
-  name                = "vehicleservice-cosmosdb-account"
+  name                = "vehicleservice-cosmosdb-account-${random_uuid.service_id.result}"
   location            = azurerm_resource_group.vehicleservice_resource_group.location
   resource_group_name = azurerm_resource_group.vehicleservice_resource_group.name
   offer_type          = "Standard"

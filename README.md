@@ -11,7 +11,10 @@ An example microservice for vehicle rental company that uses node.js and mongodb
 ## To Run Locally:
 
 1. `yarn install`
-1. `docker compose up -d`
+1. copy `.env.template` to `.env` and provide necessary values.
+1. `cd VehicleService`
+1. `docker compose up`
+1. Navigate to `http://localhost:3000/api-docs/`
 
 ## To Deploy:
 
@@ -21,3 +24,4 @@ An example microservice for vehicle rental company that uses node.js and mongodb
 1. `terraform init`
 1. `terraform plan`
 1. `terraform apply`
+1. Add env vars as secrets in Github. These will be used by the `build-and-push` github actions job.
