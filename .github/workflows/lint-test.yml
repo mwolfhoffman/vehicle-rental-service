@@ -6,7 +6,7 @@ on:
       - "*"
 
 jobs:
-  build:
+  lint-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,5 +25,5 @@ jobs:
       - name: Run linting and tests
         run: |
           cd VehicleService/src
-          npm run lint
+          npm lint
           npm test
