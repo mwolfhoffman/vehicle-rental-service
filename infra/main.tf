@@ -18,7 +18,7 @@ resource "azurerm_service_plan" "vehicleservice_resource_group" {
   resource_group_name = azurerm_resource_group.vehicleservice_resource_group.name
   location            = azurerm_resource_group.vehicleservice_resource_group.location
   os_type             = "Linux"
-  sku_name            = "P1v2"
+  sku_name            = "F1"
 }
 
 
@@ -29,7 +29,7 @@ resource "azurerm_linux_web_app" "vehicleservice_app_service" {
   service_plan_id     = azurerm_service_plan.vehicleservice_resource_group.id
 
   site_config {
-    always_on        = true
+    always_on        = false
     app_command_line = <<-EOT
       /bin/bash -c '
         docker build -t ${var.docker_image}:latest ../VehicleService
