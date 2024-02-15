@@ -25,5 +25,5 @@ jobs:
       - name: Run linting and tests
         run: |
           cd VehicleService/src
-          npm lint
-          npm test
+          npm run lint
+          npm run test
