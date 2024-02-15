@@ -33,7 +33,7 @@ resource "azurerm_linux_web_app" "vehicleservice_app_service" {
     app_command_line = <<-EOT
       /bin/bash -c '
         docker build -t ${var.docker_image}:latest ../VehicleService
-        docker run -d -p 8080:80 ${var.docker_image}:latest
+        docker run -d -p 3000:80 ${var.docker_image}:latest
       '
     EOT
   }
