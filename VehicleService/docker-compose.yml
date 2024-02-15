@@ -8,8 +8,6 @@ services:
       - "3000:3000"
     depends_on:
       - mongo
-    environment:
-      - MONGO_URI=mongo
 
   mongo:
     image: mongo:latest
