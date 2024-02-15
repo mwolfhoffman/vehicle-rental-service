@@ -29,8 +29,13 @@ resource "azurerm_linux_web_app" "vehicleservice_app_service" {
   service_plan_id     = azurerm_service_plan.vehicleservice_resource_group.id
 
   site_config {
-    always_on = true
-    app_command_line = "docker build -t ${var.docker_image}:latest ../VehicleService"
+    always_on        = true
+    app_command_line = <<-EOT
+      /bin/bash -c '
+        docker build -t ${var.docker_image}:latest ../VehicleService
+        docker run -d -p 8080:80 ${var.docker_image}:latest
+      '
+    EOT
   }
 }
 
