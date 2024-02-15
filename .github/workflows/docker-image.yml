@@ -27,5 +27,5 @@ jobs:
           file: ./VechileService/Dockerfile
           push: true
           tags: |
-          ${{ secrets.REGISTRY_URL }}/vehicleservice:latest
-          ${{ secrets.REGISTRY_URL }}/vehicleservice:${{ github.sha }}
+            ${{ secrets.REGISTRY_URL }}/vehicleservice:latest
+            ${{ secrets.REGISTRY_URL }}/vehicleservice:${{ github.sha }}
