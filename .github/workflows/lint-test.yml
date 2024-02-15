@@ -19,11 +19,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd VehicleService
+          cd VehicleService/src
           npm install
 
       - name: Run linting and tests
         run: |
-          cd VehicleService
+          cd VehicleService/src
           npm run lint
           npm test
