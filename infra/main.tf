@@ -18,7 +18,7 @@ resource "azurerm_service_plan" "vehicleservice_resource_group" {
   resource_group_name = azurerm_resource_group.vehicleservice_resource_group.name
   location            = azurerm_resource_group.vehicleservice_resource_group.location
   os_type             = "Linux"
-  sku_name            = "F1"
+  sku_name            = "F1" # Free tier
 }
 
 
@@ -28,14 +28,16 @@ resource "azurerm_linux_web_app" "vehicleservice_app_service" {
   resource_group_name = azurerm_resource_group.vehicleservice_resource_group.name
   service_plan_id     = azurerm_service_plan.vehicleservice_resource_group.id
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   site_config {
-    always_on        = false
-    app_command_line = <<-EOT
-      /bin/bash -c '
-        docker build -t ${var.docker_image}:latest ../VehicleService
-        docker run -d -p 3000:3000 ${var.docker_image}:latest
-      '
-    EOT
+    application_stack {
+      docker_image_name = "${var.docker_image}:latest"
+    }
+    always_on = false
+
   }
 }
 

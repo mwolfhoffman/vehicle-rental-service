@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://vehicleservice.azurewebsites.net",
+        url: "https://vehicleservice-appservice-plan.azurewebsites.net",
         description: "Production server",
       },
       {
