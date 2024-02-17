@@ -1,12 +1,13 @@
-# Node.js Vehicle Rental Microservice
+# Vehicle Rental Service
 
-An example microservice for a vehicle rental company that uses node.js and mongodb. It is deployed to Azure App Service and Cosmos DB.
+An example microservice for a fictional vehicle rental company based on [this repo](https://github.com/Distinctlyminty/MicroserviceFundamentals) that uses node.js and mongodb. It is deployed as a docker container that is pushed to Docker Hub and deployed to Azure App Service and Cosmos DB using Terraform and Github Actions.
 
 ## Prerequisites
 
 1. [Yarn](https://yarnpkg.com/)
 1. [Docker](https://www.docker.com/)
 1. [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/)
+1. [Terraform](https://www.terraform.io/)
 
 ## To Run Locally:
 
@@ -24,5 +25,5 @@ An example microservice for a vehicle rental company that uses node.js and mongo
 1. `terraform init`
 1. `terraform plan`
 1. `terraform apply`
-1. Add env vars as secrets in Github. These will be used by the `build-and-push` github actions job.
+1. Add the 3 secrets used in the `build-and-push` job to Github.
 1. `terraform destroy` when done.
